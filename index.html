@@ -274,7 +274,7 @@ async function sha(t){
 async function initAuth(){
   if(!localStorage.getItem('nse_auth')){
     localStorage.setItem('nse_auth',JSON.stringify({
-      u:'admin', p:await sha('admin123'), kode:'GANTI-KODE-RAHASIA'
+      u:'reyganteng', p:await sha('rey1234'), kode:'GANTI-KODE-RAHASIA'
     }));
   }
   if(sessionStorage.getItem('nse_login')==='1') document.getElementById('loginScreen').style.display='none';
