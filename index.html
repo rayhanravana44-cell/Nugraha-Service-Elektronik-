@@ -267,7 +267,6 @@ $('paymentModal').addEventListener('click',e=>{if(e.target===$('paymentModal'))c
 $('todayLabel').textContent=new Intl.DateTimeFormat('id-ID',{weekday:'short',day:'numeric',month:'short',year:'numeric'}).format(new Date());
 $('date').value=isoToday();$('payDate').value=isoToday();renderAll();
 })();
-<script>
 async function sha(t){
   const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -298,7 +297,6 @@ async function forgotPass(){
 }
 function logout(){sessionStorage.removeItem('nse_login');location.reload();}
 initAuth();
-</script>
 </script>
 </body>
 </html>
