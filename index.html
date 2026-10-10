@@ -40,43 +40,6 @@ body.locked #login{display:flex}
     <a id="kembali">Kembali ke login</a>
   </div>
 </div>
-  <script>
-(function(){
-  const K='nse_auth', $=id=>document.getElementById(id);
-  async function hash(t){
-    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
-    return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
-  }
-  async function getAuth(){
-    let a=JSON.parse(localStorage.getItem(K)||'null');
-    if(!a){
-      a={u:'admin',p:await hash('admin123'),r:await hash('GANTI-KODE-INI')};
-      localStorage.setItem(K,JSON.stringify(a));
-    }
-    return a;
-  }
-  if(sessionStorage.getItem('nse_in')==='1') document.body.classList.remove('locked');
-
-  $('btnLogin').onclick=async()=>{
-    const a=await getAuth();
-    if($('lu').value===a.u && await hash($('lp').value)===a.p){
-      sessionStorage.setItem('nse_in','1');
-      document.body.classList.remove('locked');
-    } else $('lerr').textContent='Username atau password salah';
-  };
-  $('lupa').onclick=()=>{$('boxLogin').style.display='none';$('boxLupa').style.display='grid'};
-  $('kembali').onclick=()=>{$('boxLupa').style.display='none';$('boxLogin').style.display='grid'};
-  $('btnReset').onclick=async()=>{
-    const a=await getAuth();
-    if(await hash($('rc').value)!==a.r){$('rerr').textContent='Kode pemulihan salah';return}
-    if($('np').value.length<6){$('rerr').textContent='Minimal 6 karakter';return}
-    a.p=await hash($('np').value);
-    localStorage.setItem(K,JSON.stringify(a));
-    alert('Password diganti. Silakan login.');
-    $('kembali').onclick();
-  };
-})();
-    </script>
   <body> 
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
